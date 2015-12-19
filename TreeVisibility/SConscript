@@ -1,0 +1,9 @@
+# Get the Qt5 environment
+Import('qtEnv')
+env = qtEnv.Clone()
+env.EnableQt5Modules(['QtGui','QtWidgets'])
+lib = env.Library('TreeVisibility',
+                  ['TreeVisibility.cc'])
+
+env.Program('TestTV',
+            ['TestTV.cc',lib])
