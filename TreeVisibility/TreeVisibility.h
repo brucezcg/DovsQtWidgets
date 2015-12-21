@@ -18,7 +18,8 @@ public:
     TreeVisibility(QWidget *parent=nullptr);
     ~TreeVisibility();
     void addItem(const QString& path);
-    bool visible(const QString& path);
+    bool visible(QString path);
+    void clear();
 
     // Debug routine that dumps the visibility of the entire tree
     void dumpVisibility();

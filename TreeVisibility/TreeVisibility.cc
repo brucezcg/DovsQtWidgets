@@ -75,12 +75,20 @@ void TreeVisibility::addItem(const QString& path)
 	expand(index);
 }
 
-bool TreeVisibility::visible(const QString& path)
+bool TreeVisibility::visible(QString path)
 {
+    if (path[0] != '/')
+        path = '/' + path;
+
     auto it = d->items.find(path);
     if (it == d->items.end())
         return false; // False by default, or should we throw an exception?
     return it->second->checkState() == 2;
+}
+
+void TreeVisibility::clear()
+{
+    d->model->clear();
 }
 
 // Debug routine to dump the visibility of all the nodes
@@ -103,7 +111,6 @@ void TreeVisibility::buildItemList(QStandardItem *item, QList<QStandardItem*>& a
 
 void TreeVisibility::onItemChanged(QStandardItem*item)
 {
-    printf("Item %s has changed!\n", item->text().toUtf8().data());
     auto checkState = item->checkState();
 
     // Make all children the same, but don't emit signals for them

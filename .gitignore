@@ -3,3 +3,4 @@ moc_*
 *.a
 /TreeVisibility/TestTV
 .sconsign.dblite
+*.pyc
